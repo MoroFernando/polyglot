@@ -12,7 +12,7 @@ export const metadata = {
 const layout = ({ children }) => {
   return (
     <html lang='pt-BR'>
-      <body className='flex flex-col min-h-screen bg-radial-gradient-light' suppressHydrationWarning={true}>
+      <body className='bg flex flex-col min-h-screen' suppressHydrationWarning={true}>
         <Nav />
         {children}
       </body>

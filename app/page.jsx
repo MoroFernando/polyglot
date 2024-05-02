@@ -44,21 +44,22 @@ const page = () => {
           <form className="flex flex-col flex-grow gap-5"
             onSubmit={handleSubmit}
           >
-            <textarea name="texto" id="texto" className="flex-grow rounded-lg bg-white drop-shadow-md resize-none py-4 px-8 min-h-40 focus:outline-violet-700"
+            <textarea className={`flex-grow rounded-lg bg-white drop-shadow-md resize-none py-4 px-8 min-h-40 focus:outline-violet-700 border-4 border-white ${isLoading ? 'loading-border-effect' : ''}`} 
+              name="texto" 
+              id="texto" 
+              maxLength={500}
               placeholder="Escreva aqui..."
               required={true}
               onChange={(e) => setTexto(e.target.value)}
+              disabled={isLoading} 
             >
             </textarea>
-            {isLoading ? 
-              <Loader /> : 
-              <button className="text-white font-medium violet_gradient rounded-lg h-12 drop-shadow-md hover:opacity-80 transition-all"
-                type="submit"
-                disabled={isLoading} 
-              >
-                Traduzir
-              </button>
-            }
+            <button className="text-white font-medium violet_gradient rounded-lg h-12 drop-shadow-md hover:opacity-80 transition-all"
+              type="submit"
+              disabled={isLoading} 
+            >
+              Traduzir
+            </button>
           </form>
         </div>
 

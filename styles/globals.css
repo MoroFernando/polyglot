@@ -38,7 +38,7 @@ button:disabled{
   color: #A6A6A6;
 }
 
-.bg-radial-gradient-light{
+.bg{
   background: radial-gradient(circle, #F9FCFF, #DEE4EA);
 }
 
@@ -74,3 +74,31 @@ button:disabled{
   animation: l3 1s infinite linear;
 }
 @keyframes l3 {to{transform: rotate(1turn)}}
+
+/* EFEITO LOADING NA BORDA --------------------------------------------------------------------------------------------- */
+.loading-border-effect {
+  --border-angle: 0turn;
+  --background-color: conic-gradient(from var(--border-angle),white,white);
+  --gradient-border: conic-gradient(from var(--border-angle), transparent 25%, #8b5cf6, #d946ef 99%, transparent);
+  
+  border: solid 4px transparent;
+  
+  background: 
+    var(--background-color) padding-box,
+    var(--gradient-border) border-box, 
+    transparent border-box;
+  
+  animation: bg-spin 3s linear infinite;
+
+}
+@keyframes bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
+}
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+/* ---------------------------------------------------------- */
