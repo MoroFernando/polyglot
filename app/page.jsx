@@ -61,7 +61,7 @@ const page = () => {
 
         {translation && 
           <div className="flex flex-col text-gray-400 bg-gray-200 drop-shadow-sm rounded-lg pt-8 px-8 pb-4 overflow-y-auto h-[240px] sm:w-1/2 w-full">
-            <div className="flex gap-1">
+            <div className="flex flex-wrap gap-1">
               {translation.resposta.idiomas.map(idioma => (
               <IdiomaTag idioma={idioma}/>
               ))}
