@@ -1,6 +1,6 @@
 const IdiomaTag = ({idioma}) => {
   return (
-    <div className="tag-idioma">{idioma.nome}</div>
+    <div className="tag-idioma">{idioma}</div>
   )
 }
 

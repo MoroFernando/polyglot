@@ -8,6 +8,7 @@ const page = () => {
 
   const [texto, setTexto] = useState('');
   const [translation, setTranslation] = useState('');
+  const [languages, setLanguages] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (event) => {
@@ -19,6 +20,8 @@ const page = () => {
         body: texto
       });
       const responseText = await response.json();
+      const textLanguages = [...new Set(responseText.resposta.idiomas.map(idioma => idioma.nome))];
+      setLanguages(textLanguages);
       setTranslation(responseText);
     } catch (err) {
       console.error(`Erro na tradução ${err}`)
@@ -62,8 +65,8 @@ const page = () => {
         {translation && 
           <div className="flex flex-col text-gray-400 bg-gray-200 drop-shadow-sm rounded-lg pt-8 px-8 pb-4 overflow-y-auto h-[240px] sm:w-1/2 w-full">
             <div className="flex flex-wrap gap-1">
-              {translation.resposta.idiomas.map(idioma => (
-              <IdiomaTag idioma={idioma}/>
+              {languages.map((idioma, index) => (
+              <IdiomaTag idioma={idioma} key={index}/>
               ))}
             </div>
             <span className="break-words mt-4">{translation.resposta.traducao}</span>
