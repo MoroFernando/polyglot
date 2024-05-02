@@ -14,10 +14,12 @@ const page = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
+    const regex = /\\(.)/g;
+    const user_prompt = texto.replace(regex, '$1');
     try{
       const response = await fetch("/api/gemini", {
         method: 'POST',
-        body: texto
+        body: user_prompt
       });
       const responseText = await response.json();
       const textLanguages = [...new Set(responseText.resposta.idiomas.map(idioma => idioma.nome))];
