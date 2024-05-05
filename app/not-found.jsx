@@ -1,7 +1,5 @@
 const not_found = () => {
-  return (
-    <div>not-found</div>
-  )
-}
+  return <div>not-found</div>;
+};
 
-export default not_found
+export default not_found;

@@ -32,14 +32,14 @@
   background-color: #9f7af6dd;
 }
 
-button:disabled{
+button:disabled {
   cursor: progress;
-  background: #E0E0E0;
-  color: #A6A6A6;
+  background: #e0e0e0;
+  color: #a6a6a6;
 }
 
-.bg{
-  background: radial-gradient(circle, #F9FCFF, #DEE4EA);
+.bg {
+  background: radial-gradient(circle, #f9fcff, #dee4ea);
 }
 
 .text_violet_gradient {
@@ -64,32 +64,37 @@ button:disabled{
   aspect-ratio: 1;
   border-radius: 50%;
   background: #9f7af6;
-  --_m: 
-    conic-gradient(#0000 10%,#000),
-    linear-gradient(#000 0 0) content-box;
+  --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
   -webkit-mask: var(--_m);
-          mask: var(--_m);
+  mask: var(--_m);
   -webkit-mask-composite: source-out;
-          mask-composite: subtract;
+  mask-composite: subtract;
   animation: l3 1s infinite linear;
 }
-@keyframes l3 {to{transform: rotate(1turn)}}
+@keyframes l3 {
+  to {
+    transform: rotate(1turn);
+  }
+}
 
 /* EFEITO LOADING NA BORDA --------------------------------------------------------------------------------------------- */
 .loading-border-effect {
   --border-angle: 0turn;
-  --background-color: conic-gradient(from var(--border-angle),white,white);
-  --gradient-border: conic-gradient(from var(--border-angle), transparent 25%, #8b5cf6, #d946ef 99%, transparent);
-  
-  border: solid 4px transparent;
-  
-  background: 
-    var(--background-color) padding-box,
-    var(--gradient-border) border-box, 
-    transparent border-box;
-  
-  animation: bg-spin 3s linear infinite;
+  --background-color: conic-gradient(from var(--border-angle), white, white);
+  --gradient-border: conic-gradient(
+    from var(--border-angle),
+    transparent 25%,
+    #8b5cf6,
+    #d946ef 99%,
+    transparent
+  );
 
+  border: solid 4px transparent;
+
+  background: var(--background-color) padding-box,
+    var(--gradient-border) border-box, transparent border-box;
+
+  animation: bg-spin 3s linear infinite;
 }
 @keyframes bg-spin {
   to {

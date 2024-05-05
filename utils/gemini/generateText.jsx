@@ -1,18 +1,18 @@
-const { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } = require("@google/generative-ai");
+const {
+  GoogleGenerativeAI,
+  HarmCategory,
+  HarmBlockThreshold,
+} = require("@google/generative-ai");
 
 const MODEL_NAME = "gemini-1.5-pro-latest";
 const API_KEY = process.env.GEMINI_API_KEY;
 
-
 async function generateText(prompt, systemPrompt, responseJSON) {
-
   const genAI = new GoogleGenerativeAI(API_KEY);
-  const model = genAI.getGenerativeModel({ 
+  const model = genAI.getGenerativeModel({
     model: MODEL_NAME,
     systemInstruction: {
-      parts: [
-        {text: `${systemPrompt}`},
-      ],
+      parts: [{ text: `${systemPrompt}` }],
     },
   });
 
@@ -23,8 +23,8 @@ async function generateText(prompt, systemPrompt, responseJSON) {
     maxOutputTokens: 8192,
   };
 
-  if(responseJSON){
-    generationConfig.response_mime_type = "application/json"
+  if (responseJSON) {
+    generationConfig.response_mime_type = "application/json";
   }
 
   const safetySettings = [
@@ -49,14 +49,13 @@ async function generateText(prompt, systemPrompt, responseJSON) {
   const chat = model.startChat({
     generationConfig,
     safetySettings,
-    history: [
-    ],
+    history: [],
   });
 
   const result = await chat.sendMessage(prompt);
   const response = result.response;
   const text = response.text();
-  return text
+  return text;
 }
 
 export default generateText;
