@@ -20,6 +20,7 @@ const page = () => {
         body: user_prompt,
       });
       const toJSON = await res.json();
+      console.log(toJSON);
       setTranslation(toJSON);
     } catch (err) {
       console.error(`Erro na tradução ${err}`);
@@ -67,7 +68,7 @@ const page = () => {
         </div>
 
         {translation && (
-          <div className="flex flex-col text-gray-400 bg-gray-200 drop-shadow-sm rounded-lg pt-8 px-8 pb-4 overflow-y-auto h-[240px] sm:w-1/2 w-full">
+          <div className="flex flex-col gap-4 text-gray-400 bg-gray-200 drop-shadow-sm rounded-lg pt-8 px-8 pb-4 overflow-y-auto h-[240px] sm:w-1/2 w-full">
             <div className="flex flex-wrap gap-1">
               {translation.resposta.idiomas.map((idioma, index) => (
                 <span key={index} onMouseOver={() => console.log(`${idioma}`)}>
@@ -75,9 +76,12 @@ const page = () => {
                 </span>
               ))}
             </div>
-            <span className="break-words mt-4">
-              {translation.resposta.traducao}
-            </span>
+
+            <div className="flex flex-wrap">
+              {translation.resposta.trechos.map((trecho, index) => (
+                <span className="whitespace-pre" key={index}>{trecho.texto}</span>
+              ))}
+            </div>
           </div>
         )}
       </div>
