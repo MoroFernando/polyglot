@@ -6,7 +6,8 @@ import { useState } from "react";
 
 const page = () => {
   const [texto, setTexto] = useState("");
-  const [translation, setTranslation] = useState("");
+  const [traducao, setTraducao] = useState("");
+  const [idiomaFocado, setIdiomaFocado] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (event) => {
@@ -20,8 +21,7 @@ const page = () => {
         body: user_prompt,
       });
       const toJSON = await res.json();
-      console.log(toJSON);
-      setTranslation(toJSON);
+      setTraducao(toJSON);
     } catch (err) {
       console.error(`Erro na tradução ${err}`);
     }
@@ -51,7 +51,7 @@ const page = () => {
               }`}
               name="texto"
               id="texto"
-              maxLength={500}
+              maxLength={300}
               placeholder="Escreva aqui..."
               required={true}
               onChange={(e) => setTexto(e.target.value)}
@@ -67,19 +67,24 @@ const page = () => {
           </form>
         </div>
 
-        {translation && (
+        {traducao && (
           <div className="flex flex-col gap-4 text-gray-400 bg-gray-200 drop-shadow-sm rounded-lg pt-8 px-8 pb-4 overflow-y-auto h-[240px] sm:w-1/2 w-full">
             <div className="flex flex-wrap gap-1">
-              {translation.resposta.idiomas.map((idioma, index) => (
-                <span key={index} onMouseOver={() => console.log(`${idioma}`)}>
+              {traducao.resposta.idiomas.map((idioma, index) => (
+                <span 
+                  key={index} 
+                  onMouseOver={() => setIdiomaFocado(idioma)} 
+                  onMouseLeave={() => setIdiomaFocado(null)}
+                  className="hover:cursor-help"
+                >
                   <IdiomaTag idioma={idioma}/>
                 </span>
               ))}
             </div>
 
             <div className="flex flex-wrap">
-              {translation.resposta.trechos.map((trecho, index) => (
-                <span className="whitespace-pre" key={index}>{trecho.texto}</span>
+              {traducao.resposta.trechos.map((trecho, index) => (
+                <span className={`${trecho.trechoTraducao.includes("\n\n") ? "w-full h-4" : "whitespace-pre-wrap"} ${idiomaFocado === trecho.trechoIdioma ? "rounded-md bg-violet-500 text-white" : ""}`} key={index}>{trecho.trechoTraducao}</span>
               ))}
             </div>
           </div>

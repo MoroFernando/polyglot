@@ -6,6 +6,5 @@ export const POST = async (req) => {
 
   const response = await generateText(userPrompt, systemPrompt, true);
   console.log(response);
-
   return new Response(response);
 };
