@@ -83,8 +83,8 @@ const page = () => {
             </div>
 
             <div className="flex flex-wrap">
-              {traducao.resposta.trechos.map((trecho, index) => (
-                <span className={`${trecho.trechoTraducao.includes("\n\n") ? "w-full h-4" : "whitespace-pre-wrap"} ${idiomaFocado === trecho.trechoIdioma ? "rounded-md bg-violet-500 text-white" : ""}`} key={index}>{trecho.trechoTraducao}</span>
+              {traducao.resposta.partes.map((parte, index) => (
+                <span className={`whitespace-pre-wrap ${idiomaFocado === parte.idioma ? "rounded-md bg-violet-500 text-white" : ""}`} key={index}>{parte.traducao}</span>
               ))}
             </div>
           </div>

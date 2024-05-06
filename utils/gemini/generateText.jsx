@@ -17,9 +17,8 @@ async function generateText(prompt, systemPrompt, responseJSON) {
   });
 
   const generationConfig = {
-    temperature: 1,
-    topK: 0,
-    topP: 0.95,
+    temperature: 0,
+    topP: 0,
     maxOutputTokens: 8192,
   };
 
